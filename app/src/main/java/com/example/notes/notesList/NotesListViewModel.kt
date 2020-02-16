@@ -1,10 +1,12 @@
 package com.example.notes.notesList
 
+import android.provider.ContactsContract
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.notes.data.Note
+import com.example.notes.utility.Event
 
 
 class NotesListViewModel : ViewModel() {
@@ -22,6 +24,33 @@ class NotesListViewModel : ViewModel() {
     fun add() {
         _notes.value = _notes.value?.plus(Note("This is a test note", "Some random value"))
     }
+
+
+    /**
+     * Event Handling
+     */
+    // Handling create note button click
+    private val _createNoteEvent = MutableLiveData<Event<Unit>>()
+    val createNoteEvent : LiveData<Event<Unit>>
+        get() = _createNoteEvent
+
+
+    //Handle opening a note
+    private val _openNoteEvent = MutableLiveData<Event<Unit>>()
+    val openNoteEvent: LiveData<Event<Unit>>
+        get() = _openNoteEvent
+
+
+
+    //MARK: aa
+    fun createNote() {
+        _createNoteEvent.value = Event(Unit)
+    }
+
+    fun openNote() {
+        _openNoteEvent.value = Event(Unit)
+    }
+
 
 
 }

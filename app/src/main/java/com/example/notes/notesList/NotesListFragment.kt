@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notes.R
 import com.example.notes.data.Note
@@ -52,9 +53,10 @@ class NotesListFragment : Fragment() {
 
         binding.notesList.layoutManager = LinearLayoutManager(this.context)
 
-        binding.addNote.setOnClickListener {
+        viewModel.createNoteEvent.observe(this, Observer {
+            //TODO: Redirect to create notes
             viewModel.add()
-        }
+        })
 
 
         return binding.root

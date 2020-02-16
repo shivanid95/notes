@@ -60,7 +60,7 @@
                     android:id="@+id/notes_list_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="@{viewModel.isNotesListEmpty ? View.GONE : View.GONE}"
+                    android:visibility="@{viewModel.isNotesListEmpty ? View.GONE : View.VISIBLE}"
                     >
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/notes_list"
@@ -78,7 +78,8 @@
                 app:layout_anchor="@id/contentFrame"
                 app:layout_anchorGravity="bottom|right|end"
                 app:fabSize="normal"
-                app:srcCompat="@drawable/add_note_fab"/>
+                app:srcCompat="@drawable/add_note_fab"
+                android:onClick="@{() -> viewModel.createNote()}"/>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     </RelativeLayout>
