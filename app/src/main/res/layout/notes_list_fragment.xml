@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <FrameLayout
+                android:id="@+id/contentFrame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <LinearLayout
+                    android:id="@+id/empty_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:id="@+id/empty_icon_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="300dp"
+                        android:layout_gravity="center"
+                        android:padding="8dp"/>
+
+                    <TextView
+                        android:id="@+id/empty_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textAlignment="center"
+                        android:text="Hello world!"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/notes_list_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    >
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/notes_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        />
+                </LinearLayout>
+            </FrameLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                app:layout_anchor="@id/contentFrame"
+                app:layout_anchorGravity="bottom|right|end"
+                app:fabSize="normal" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    </RelativeLayout>
+</layout>
