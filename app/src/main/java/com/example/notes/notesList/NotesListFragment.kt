@@ -21,6 +21,14 @@ class NotesListFragment : Fragment() {
 
     lateinit var viewModel: NotesListViewModel
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.refresh()
+    }
+
+
+
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
