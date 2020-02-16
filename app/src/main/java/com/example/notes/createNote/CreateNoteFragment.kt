@@ -17,6 +17,7 @@ class CreateNoteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = DataBindingUtil.inflate<CreateNoteFragmentBinding>(inflater, R.layout.create_note_fragment, container, false)
+        setHasOptionsMenu(true)
         return binding.root
 
     }

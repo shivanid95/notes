@@ -1,6 +1,20 @@
 package com.example.notes.data
 
-class NotesRepository {
 
-    //TODO: Create a data source for storing notes
+object NotesRepository {
+
+
+    private var notes: List<Note> = emptyList()
+        private set
+
+
+    fun add(note: Note) {
+        if (note.title.isNotEmpty() && note.content.isNotEmpty()) {
+            notes.plus(note)
+        }
+    }
+
+    fun clearAll() {
+        notes = emptyList()
+    }
 }

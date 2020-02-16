@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <data>
 
@@ -10,35 +12,66 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingBottom="16dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:paddingTop="16dp"
             >
-
-            <EditText
-                android:id="@+id/create_note_title"
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/coordinatorLayout"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <FrameLayout
+                android:id="@+id/contentFrame"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/create_note_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto"
+                        android:hint="@string/edit_title_placeholder"
+                        android:imeOptions="flagNoExtractUi"
+                        android:maxLines="1"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                    <EditText
+                        android:id="@+id/create_note_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:fontFamily="@font/roboto"
+                        android:gravity="top"
+                        android:hint="@string/edit_note_content_placeholder"
+                        android:imeOptions="flagNoExtractUi" />
+
+                </LinearLayout>
+
+
+
+            </FrameLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fab_edit_task_done"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
-                android:hint="@string/edit_title_placeholder"
-                android:imeOptions="flagNoExtractUi"
-                android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+                android:layout_margin="16dp"
+                android:src="@drawable/save_note_fab"
+                app:fabSize="normal"
+                app:layout_anchor="@id/contentFrame"
+                android:layout_gravity="bottom"
+                app:layout_anchorGravity="bottom|right|end" />
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-            <EditText
-                android:id="@+id/create_note_content"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:fontFamily="@font/roboto"
-                android:gravity="top"
-                android:hint="@string/edit_note_content_placeholder"
-                android:imeOptions="flagNoExtractUi" />
-
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 </layout>
