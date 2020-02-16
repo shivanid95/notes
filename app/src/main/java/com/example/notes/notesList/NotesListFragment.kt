@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notes.R
+import com.example.notes.createNote.CreateNoteFragment
 import com.example.notes.data.Note
 import com.example.notes.databinding.NotesListFragmentBinding
 
@@ -56,6 +57,8 @@ class NotesListFragment : Fragment() {
         viewModel.createNoteEvent.observe(this, Observer {
             //TODO: Redirect to create notes
             viewModel.add()
+            findNavController().navigate(NotesListFragmentDirections.actionNotesListFragmentToCreateNoteFragment())
+           // findNavController().navigate()
         })
 
 

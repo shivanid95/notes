@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Notes</string>
     <string name="empty_note_message">No notes added. Click on the + button to add notes</string>
+    <string name="edit_title_placeholder">Enter title </string>
+    <string name="edit_note_content_placeholder">Add content</string>
+    <string name="no_title_message">Please add a title to save.</string>
+    <string name="no_content_message">Please add some content to save</string>
 </resources>
