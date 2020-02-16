@@ -1,25 +1,19 @@
 package com.example.notes.notesList
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.example.notes.R
+
 import com.example.notes.data.Note
+import com.example.notes.databinding.NoteListItemBinding
 
-class NotesListAdaptor: RecyclerView.Adapter<NotesListAdaptor.NoteItemViewHolder>() {
-
-
-    private val data = listOf(
-        Note("Hello", "First note"),
-        Note("Reminder", "remind me to do somwthing"),
-        Note("last", "cld,dl,l")
-    )
-
-
-    override fun getItemCount(): Int  = data.count()
+/**
+ * Adapter that provides a list of [Note] to a recycler view
+ */
+class NotesListAdaptor: ListAdapter<Note, NotesListAdaptor.NoteItemViewHolder>(NotesListDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemViewHolder {
@@ -29,7 +23,7 @@ class NotesListAdaptor: RecyclerView.Adapter<NotesListAdaptor.NoteItemViewHolder
     }
 
     override fun onBindViewHolder(holder: NoteItemViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item)
     }
 
@@ -38,26 +32,50 @@ class NotesListAdaptor: RecyclerView.Adapter<NotesListAdaptor.NoteItemViewHolder
     /**
      * Note List Cell View Holder
      */
-    class NoteItemViewHolder private constructor (itemView: View): RecyclerView.ViewHolder(itemView) {
+    class NoteItemViewHolder private constructor (val binding: NoteListItemBinding): RecyclerView.ViewHolder(binding.root) {
 
-        val noteTitleTextView: TextView = itemView.findViewById(R.id.note_title_text)
-
-        fun bind(
-            item: Note
-        ) {
-            noteTitleTextView.text = item.title
+        /**
+         * binds the data with the layout
+         */
+        fun bind(item: Note) {
+           binding.noteTitleText.text = item.title
         }
 
 
         companion object {
+            /**
+             * Creates a new view holder cell
+             */
             fun from(parent: ViewGroup): NoteItemViewHolder {
+                //Create Inflater
                 val viewInflater = LayoutInflater.from(parent.context)
-                val view = viewInflater.inflate(R.layout.note_list_item, parent, false)
-                return NoteItemViewHolder(view)
+                //Inflate Using Binding
+                val binding = NoteListItemBinding.inflate(viewInflater, parent, false)
+
+                return NoteItemViewHolder(binding)
             }
         }
 
 
     }
+
+}
+
+
+/**
+ * Callback for calculating the diff between two non-null items in a list.
+ * Used by ListAdapter to calculate the minumum number of changes between and old list and a new
+ */
+class NotesListDiffCallback: DiffUtil.ItemCallback<Note>() {
+
+    override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
+        //TODO("change logic to compare dates")
+        return oldItem.title == newItem.title && oldItem.content == newItem.content
+    }
+
+    override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
+        return oldItem == newItem
+    }
+
 
 }

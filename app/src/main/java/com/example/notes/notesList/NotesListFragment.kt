@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notes.R
+import com.example.notes.data.Note
 import com.example.notes.databinding.NotesListFragmentBinding
 
 class NotesListFragment : Fragment() {
@@ -26,7 +27,16 @@ class NotesListFragment : Fragment() {
             false
         )
 
-        binding.notesList.adapter = NotesListAdaptor()
+        val data = listOf(
+            Note("First npte", "Dummy content"),
+            Note("Hello world", "This is a note"),
+            Note("YOlo", "You only live once")
+
+        )
+
+        val adaptor = NotesListAdaptor()
+        binding.notesList.adapter = adaptor
+        adaptor.submitList(data)
         binding.notesList.layoutManager = LinearLayoutManager(this.context)
         return binding.root
 
