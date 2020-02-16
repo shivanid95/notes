@@ -7,12 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notes.R
 import com.example.notes.data.Note
 import com.example.notes.databinding.NotesListFragmentBinding
 
+
 class NotesListFragment : Fragment() {
+
+    lateinit var viewModel: NotesListViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,6 +38,9 @@ class NotesListFragment : Fragment() {
 
         )
 
+        val viewModelFactory = NotesListViewModelFactory()
+        viewModel = ViewModelProvider(this, viewModelFactory).get(NotesListViewModel::class.java)
+        binding.viewModel = viewModel
         val adaptor = NotesListAdaptor()
         binding.notesList.adapter = adaptor
         adaptor.submitList(data)
