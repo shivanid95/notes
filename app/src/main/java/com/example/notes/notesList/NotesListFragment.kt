@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.notes.R
@@ -37,15 +38,27 @@ class NotesListFragment : Fragment() {
             Note("YOlo", "You only live once")
 
         )
-
+        binding.setLifecycleOwner(this)
         val viewModelFactory = NotesListViewModelFactory()
-        viewModel = ViewModelProvider(this, viewModelFactory).get(NotesListViewModel::class.java)
-        binding.viewModel = viewModel
         val adaptor = NotesListAdaptor()
         binding.notesList.adapter = adaptor
-        adaptor.submitList(data)
+
+        viewModel = ViewModelProvider(this, viewModelFactory).get(NotesListViewModel::class.java)
+        binding.viewModel = viewModel
+
+        viewModel.notes.observe(this, Observer {newNotes ->
+            adaptor.submitList(newNotes)
+        })
+
         binding.notesList.layoutManager = LinearLayoutManager(this.context)
+
+        binding.addNote.setOnClickListener {
+            viewModel.add()
+        }
+
+
         return binding.root
+
 
     }
 }

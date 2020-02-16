@@ -17,7 +17,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/coordinatorLayout"
             android:layout_width="match_parent"
@@ -35,7 +34,7 @@
                     android:orientation="vertical"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:visibility="@{viewModel.isListEmpty() ? View.VISIBLE : View.GONE }"
+                    android:visibility="@{ viewModel.isNotesListEmpty ? View.VISIBLE : View.GONE }"
                     >
 
                     <ImageView
@@ -51,8 +50,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:textAlignment="center"
-                        android:text="Hello world!"/>
+                        android:fontFamily="@font/roboto"
+                        android:text="@string/empty_note_message"
+                        android:textAlignment="center" />
                 </LinearLayout>
 
 
@@ -60,7 +60,7 @@
                     android:id="@+id/notes_list_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:visibility="@{viewModel.isListEmpty() ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{viewModel.isNotesListEmpty ? View.GONE : View.GONE}"
                     >
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/notes_list"
