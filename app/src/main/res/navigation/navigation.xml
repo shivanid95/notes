@@ -6,5 +6,13 @@
     <fragment
         android:id="@+id/notesListFragment"
         android:name="com.example.notes.notesList.NotesListFragment"
-        android:label="NotesListFragment" />
+        android:label="NotesListFragment" >
+        <action
+            android:id="@+id/action_notesListFragment_to_createNoteFragment"
+            app:destination="@id/createNoteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createNoteFragment"
+        android:name="com.example.notes.createNote.CreateNoteFragment"
+        android:label="CreateNoteFragment" />
 </navigation>
