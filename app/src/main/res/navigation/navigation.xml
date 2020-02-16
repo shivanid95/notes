@@ -10,9 +10,21 @@
         <action
             android:id="@+id/action_notesListFragment_to_createNoteFragment"
             app:destination="@id/createNoteFragment" />
+        <argument
+            android:name="noteTitle"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="noteContent"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/createNoteFragment"
         android:name="com.example.notes.createNote.CreateNoteFragment"
-        android:label="CreateNoteFragment" />
+        android:label="CreateNoteFragment" >
+        <action
+            android:id="@+id/action_createNoteFragment_to_notesListFragment2"
+            app:destination="@id/notesListFragment"
+            app:popUpTo="@+id/notesListFragment" />
+    </fragment>
 </navigation>
