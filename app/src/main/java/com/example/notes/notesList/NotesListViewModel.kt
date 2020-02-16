@@ -1,11 +1,13 @@
 package com.example.notes.notesList
 
 import android.provider.ContactsContract
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import com.example.notes.data.Note
+import com.example.notes.data.NotesRepository
 import com.example.notes.utility.Event
 
 
@@ -49,6 +51,11 @@ class NotesListViewModel : ViewModel() {
 
     fun openNote() {
         _openNoteEvent.value = Event(Unit)
+    }
+
+    fun refresh() {
+       Log.d("NotesList", "${NotesRepository.notes}")
+        _notes.value = NotesRepository.notes
     }
 
 
