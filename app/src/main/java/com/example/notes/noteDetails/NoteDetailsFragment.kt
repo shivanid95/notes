@@ -1,6 +1,8 @@
 package com.example.notes.noteDetails
 
 import android.os.Bundle
+import android.text.format.DateFormat
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -13,10 +15,14 @@ import com.example.notes.R
 import com.example.notes.createNote.CreateNoteFragmentDirections
 import com.example.notes.data.Note
 import com.example.notes.databinding.NoteDetailsFragmentBinding
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
+import java.util.*
 
 class NoteDetailsFragment: Fragment() {
 
-    lateinit var note: Note
+   lateinit var note: Note
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +48,7 @@ class NoteDetailsFragment: Fragment() {
         }
         activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
         binding.note = note
+        binding.noteCreationDateText.text = "Created on ${getDateString(note.date)}"
         setHasOptionsMenu(true)
 
         //Set Background color
@@ -50,15 +57,12 @@ class NoteDetailsFragment: Fragment() {
     }
 
 
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//
-//        when (item.itemId) {
-//                android.R.id.home -> findNavController().navigateUp()
-//
-//        }
-//
-//        return super.onOptionsItemSelected(item)
-//    }
+    fun getDateString(date: Date):  String {
+        val format = SimpleDateFormat("MMM dd, yyyy")
+        return format.format(date)
+
+
+    }
 
 
 }

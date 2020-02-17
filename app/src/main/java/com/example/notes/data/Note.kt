@@ -1,7 +1,13 @@
 package com.example.notes.data
 
 import android.os.Parcelable
+import android.text.format.DateUtils
 import kotlinx.android.parcel.Parcelize
+import java.time.LocalDateTime
+import java.util.*
 
+/**
+ * Single Note Objec
+ */
 @Parcelize
-data class Note(var title: String = "", var content: String = "") : Parcelable
+data class Note(var title: String = "", var content: String = "", var date: Date = Date()) : Parcelable

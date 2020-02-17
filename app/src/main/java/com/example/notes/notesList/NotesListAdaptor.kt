@@ -44,7 +44,7 @@ class NotesListAdaptor(val viewModel: NotesListViewModel): ListAdapter<Note, Not
          * binds the data with the layout
          */
         fun bind(item: Note, listener: NoteOnClickListener) {
-           binding.noteTitleText.text = "\u2022 ${item.title}"
+           binding.noteTitleText.text = "\u2022 " + item.title
             binding.note = item
            binding.listener = listener
 

@@ -4,19 +4,15 @@ package com.example.notes.data
 object NotesRepository {
 
 
-     var notes: List<Note> = emptyList()
-        private set
+     private val _notes: MutableList<Note> = mutableListOf()
+     val notes: List<Note>
+        get() = _notes
 
 
     fun add(note: Note) {
         if (note.title.isNotEmpty() && note.content.isNotEmpty()) {
-            notes = notes.plus(note)
+            _notes.add(note)
         }
     }
-
-    fun clearAll() {
-        notes = emptyList()
-    }
-
 
 }
