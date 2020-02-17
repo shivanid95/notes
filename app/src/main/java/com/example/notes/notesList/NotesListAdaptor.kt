@@ -13,7 +13,7 @@ import com.example.notes.databinding.NoteListItemBinding
 /**
  * Adapter that provides a list of [Note] to a recycler view
  */
-class NotesListAdaptor: ListAdapter<Note, NotesListAdaptor.NoteItemViewHolder>(NotesListDiffCallback()) {
+class NotesListAdaptor(val viewModel: NotesListViewModel): ListAdapter<Note, NotesListAdaptor.NoteItemViewHolder>(NotesListDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemViewHolder {
@@ -24,7 +24,13 @@ class NotesListAdaptor: ListAdapter<Note, NotesListAdaptor.NoteItemViewHolder>(N
 
     override fun onBindViewHolder(holder: NoteItemViewHolder, position: Int) {
         val item = getItem(position)
-        holder.bind(item)
+        val userActionListener = object : NoteOnClickListener {
+            override fun onNoteClicked(note: Note?) {
+                if (note != null)  viewModel.openNote(note!!)
+            }
+        }
+
+        holder.bind(item, userActionListener)
     }
 
 
@@ -37,8 +43,11 @@ class NotesListAdaptor: ListAdapter<Note, NotesListAdaptor.NoteItemViewHolder>(N
         /**
          * binds the data with the layout
          */
-        fun bind(item: Note) {
+        fun bind(item: Note, listener: NoteOnClickListener) {
            binding.noteTitleText.text = item.title
+            binding.note = item
+           binding.listener = listener
+
         }
 
 
@@ -55,9 +64,9 @@ class NotesListAdaptor: ListAdapter<Note, NotesListAdaptor.NoteItemViewHolder>(N
                 return NoteItemViewHolder(binding)
             }
         }
-
-
     }
+
+
 
 }
 

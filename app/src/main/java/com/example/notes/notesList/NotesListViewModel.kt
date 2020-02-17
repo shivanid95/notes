@@ -38,8 +38,8 @@ class NotesListViewModel : ViewModel() {
 
 
     //Handle opening a note
-    private val _openNoteEvent = MutableLiveData<Event<Unit>>()
-    val openNoteEvent: LiveData<Event<Unit>>
+    private val _openNoteEvent = MutableLiveData<Event<Note>>()
+    val openNoteEvent: LiveData<Event<Note>>
         get() = _openNoteEvent
 
 
@@ -49,8 +49,8 @@ class NotesListViewModel : ViewModel() {
         _createNoteEvent.value = Event(Unit)
     }
 
-    fun openNote() {
-        _openNoteEvent.value = Event(Unit)
+    fun openNote(note: Note) {
+        _openNoteEvent.value = Event(note)
     }
 
     fun refresh() {

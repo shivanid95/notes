@@ -10,7 +10,9 @@ import com.example.notes.R
 import com.example.notes.data.Note
 import com.example.notes.databinding.NoteDetailsFragmentBinding
 
-class NoteDetailsFragment(val note: Note): Fragment() {
+class NoteDetailsFragment: Fragment() {
+
+    lateinit var note: Note
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -18,6 +20,12 @@ class NoteDetailsFragment(val note: Note): Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = DataBindingUtil.inflate<NoteDetailsFragmentBinding>(inflater, R.layout.note_details_fragment, container, false)
+        arguments?.let {
+
+            val noteObject = it.getParcelable("note") as Note
+            print(noteObject)
+            note = noteObject
+        }
         binding.note = note
         return binding.root
     }

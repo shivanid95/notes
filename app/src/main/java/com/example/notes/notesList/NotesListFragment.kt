@@ -20,14 +20,14 @@ import com.example.notes.databinding.NotesListFragmentBinding
 class NotesListFragment : Fragment() {
 
     lateinit var viewModel: NotesListViewModel
+    lateinit var listAdapter: NotesListAdaptor
+
+
 
     override fun onResume() {
         super.onResume()
         viewModel.refresh()
     }
-
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,25 +50,31 @@ class NotesListFragment : Fragment() {
         )
         binding.setLifecycleOwner(this)
         val viewModelFactory = NotesListViewModelFactory()
-        val adaptor = NotesListAdaptor()
-        binding.notesList.adapter = adaptor
-
         viewModel = ViewModelProvider(this, viewModelFactory).get(NotesListViewModel::class.java)
         binding.viewModel = viewModel
 
-        viewModel.notes.observe(this, Observer {newNotes ->
-            adaptor.submitList(newNotes)
+        listAdapter = NotesListAdaptor(viewModel)
+        binding.notesList.adapter = listAdapter
+
+        viewModel.notes.observe(this.viewLifecycleOwner, Observer {newNotes ->
+            listAdapter.submitList(newNotes)
         })
 
         binding.notesList.layoutManager = LinearLayoutManager(this.context)
 
-        viewModel.createNoteEvent.observe(this, Observer {
-            //TODO: Redirect to create notes
-            viewModel.add()
+        viewModel.createNoteEvent.observe(this.viewLifecycleOwner, Observer {
+
             findNavController().navigate(NotesListFragmentDirections.actionNotesListFragmentToCreateNoteFragment())
-           // findNavController().navigate()
+
         })
 
+
+        viewModel.openNoteEvent.observe(this.viewLifecycleOwner, Observer {
+            val note = it.peekContent()
+            findNavController().navigate(NotesListFragmentDirections.actionNotesListFragmentToNoteDetailsFragment(note))
+           // findNavController().navigate(NotesListFragmentDirections.)
+            //findNavController().navigate(NotesListFragmentDirections)
+        })
 
         return binding.root
 
