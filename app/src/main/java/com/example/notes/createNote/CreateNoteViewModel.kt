@@ -35,7 +35,7 @@ class CreateNoteViewModel: ViewModel() {
         get() = _snackbarText
 
     /**
-     * Utitly Variables
+     * Utility Variables
      */
 
     // Returns true if content and title are not empty

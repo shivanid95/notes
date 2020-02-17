@@ -54,8 +54,11 @@ class NotesListViewModel : ViewModel() {
     }
 
     fun refresh() {
-       Log.d("NotesList", "${NotesRepository.notes}")
-        _notes.value = NotesRepository.notes
+        // Refresh the notes list on change in repository
+        if (notes !== NotesRepository.notes) {
+            _notes.value = NotesRepository.notes
+        }
+
     }
 
 

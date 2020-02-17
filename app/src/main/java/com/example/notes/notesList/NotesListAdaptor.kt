@@ -15,13 +15,16 @@ import com.example.notes.databinding.NoteListItemBinding
  */
 class NotesListAdaptor(val viewModel: NotesListViewModel): ListAdapter<Note, NotesListAdaptor.NoteItemViewHolder>(NotesListDiffCallback()) {
 
-
+    /**
+     * Note cell creation
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteItemViewHolder {
         return  NoteItemViewHolder.from(parent)
-
-
     }
 
+    /**
+     * Note cell binding
+     */
     override fun onBindViewHolder(holder: NoteItemViewHolder, position: Int) {
         val item = getItem(position)
         val userActionListener = object : NoteOnClickListener {
@@ -78,8 +81,8 @@ class NotesListAdaptor(val viewModel: NotesListViewModel): ListAdapter<Note, Not
 class NotesListDiffCallback: DiffUtil.ItemCallback<Note>() {
 
     override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
-        //TODO("change logic to compare dates")
-        return oldItem.title == newItem.title && oldItem.content == newItem.content
+
+        return oldItem.date == newItem.date && oldItem.content == newItem.content
     }
 
     override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {

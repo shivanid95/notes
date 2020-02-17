@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 import java.util.*
 
 /**
- * Single Note Objec
+ * Note class: for saving a single note unit
  */
 @Parcelize
 data class Note(var title: String = "", var content: String = "", var date: Date = Date()) : Parcelable
