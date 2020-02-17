@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="extralarge_text_size">24sp</dimen>
+    <dimen name="small_text_size">14sp</dimen>
+    <dimen name="padding_large">16dp</dimen>
+    <dimen name="regular_text_size">16dp</dimen>
+    <dimen name="margin_large">24dp</dimen>
+    <item name="line_spacing" type="dimen" format="float">1.4</item>
+</resources>
