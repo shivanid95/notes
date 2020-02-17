@@ -49,6 +49,7 @@ class NotesListFragment : Fragment() {
 
         )
         binding.setLifecycleOwner(this)
+        binding.root.setBackgroundColor(getResources().getColor(R.color.colorBackground))
         val viewModelFactory = NotesListViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory).get(NotesListViewModel::class.java)
         binding.viewModel = viewModel

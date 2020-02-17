@@ -23,7 +23,7 @@ class CreateNoteFragment : Fragment() {
 
         // Handling back button press.
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-           findNavController().navigate(CreateNoteFragmentDirections.actionCreateNoteFragmentToNotesListFragment2(null,""))
+            findNavController().navigate(CreateNoteFragmentDirections.actionCreateNoteFragmentToNotesListFragment2(null,""))
         }
 
     }
@@ -42,29 +42,30 @@ class CreateNoteFragment : Fragment() {
         val binding = DataBindingUtil.inflate<CreateNoteFragmentBinding>(inflater, R.layout.create_note_fragment, container, false)
         binding.setLifecycleOwner(this)
 
+        //Set background color
+        binding.root.setBackgroundColor(getResources().getColor(R.color.colorBackground))
+
         //Setup ViewModel
         val viewModelFactory = CreateNoteViewModelFactory()
         viewModel = ViewModelProvider(this, viewModelFactory).get(CreateNoteViewModel::class.java)
         binding.viewModel = viewModel
-         //Observers
+        //Observers
         viewModel.snackbarMessage.observe(this.viewLifecycleOwner, Observer { event ->
             event.getContentIfNotHandled()?.let {
                 Toast.makeText(this.context, context?.getString(it), Toast.LENGTH_LONG).show()
 
             }
         })
-        
+
         //Save tap  Observer
         viewModel.saveNoteEvent.observe(this.viewLifecycleOwner, Observer {
             //Navigate back to all notes on save successful
             findNavController().navigate(CreateNoteFragmentDirections.actionCreateNoteFragmentToNotesListFragment2(viewModel.title.value, viewModel.content.value ?: ""))
 
         })
-            setHasOptionsMenu(true)
-            return binding.root
+        setHasOptionsMenu(true)
+        return binding.root
 
-        }
-
-
+    }
 
 }
