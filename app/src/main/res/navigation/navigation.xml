@@ -9,7 +9,9 @@
         android:label="All Notes">
         <action
             android:id="@+id/action_notesListFragment_to_createNoteFragment"
-            app:destination="@id/createNoteFragment" />
+            app:destination="@id/createNoteFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_enter" />
         <argument
             android:name="noteTitle"
             app:argType="string"
@@ -19,7 +21,9 @@
             app:argType="string" />
         <action
             android:id="@+id/action_notesListFragment_to_noteDetailsFragment"
-            app:destination="@id/noteDetailsFragment" />
+            app:destination="@id/noteDetailsFragment"
+            app:enterAnim="@anim/fragment_fade_enter"
+            app:exitAnim="@anim/fragment_fade_exit" />
     </fragment>
     <fragment
         android:id="@+id/createNoteFragment"
