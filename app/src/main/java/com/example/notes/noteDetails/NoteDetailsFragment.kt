@@ -2,6 +2,7 @@ package com.example.notes.noteDetails
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
@@ -20,7 +21,7 @@ class NoteDetailsFragment: Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        // Handle back press
-       requireActivity().onBackPressedDispatcher.addCallback(this) {
+          requireActivity().onBackPressedDispatcher.addCallback(this) {
           findNavController().navigate(NoteDetailsFragmentDirections.actionNoteDetailsFragmentToNotesListFragment(null, ""))
         }
 
@@ -31,6 +32,7 @@ class NoteDetailsFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val binding = DataBindingUtil.inflate<NoteDetailsFragmentBinding>(inflater, R.layout.note_details_fragment, container, false)
         arguments?.let {
 
@@ -40,8 +42,20 @@ class NoteDetailsFragment: Fragment() {
         }
         activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
         binding.note = note
+        setHasOptionsMenu(true)
         return binding.root
     }
+
+
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//
+//        when (item.itemId) {
+//                android.R.id.home -> findNavController().navigateUp()
+//
+//        }
+//
+//        return super.onOptionsItemSelected(item)
+//    }
 
 
 }

@@ -6,7 +6,7 @@
     <fragment
         android:id="@+id/notesListFragment"
         android:name="com.example.notes.notesList.NotesListFragment"
-        android:label="NotesListFragment" >
+        android:label="All Notes">
         <action
             android:id="@+id/action_notesListFragment_to_createNoteFragment"
             app:destination="@id/createNoteFragment" />
@@ -24,7 +24,7 @@
     <fragment
         android:id="@+id/createNoteFragment"
         android:name="com.example.notes.createNote.CreateNoteFragment"
-        android:label="CreateNoteFragment" >
+        android:label="Create Note">
         <action
             android:id="@+id/action_createNoteFragment_to_notesListFragment2"
             app:destination="@id/notesListFragment"
@@ -33,8 +33,9 @@
     <fragment
         android:id="@+id/noteDetailsFragment"
         android:name="com.example.notes.noteDetails.NoteDetailsFragment"
-        android:label="NoteDetailsFragment" >
-        <argument android:name="note"
+        android:label="Note">
+        <argument
+            android:name="note"
             app:argType="com.example.notes.data.Note" />
         <action
             android:id="@+id/action_noteDetailsFragment_to_notesListFragment"
