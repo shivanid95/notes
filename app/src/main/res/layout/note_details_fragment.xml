@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="note"
+            type="com.example.notes.data.Note" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_large"
+        >
+
+        <TextView
+            android:id="@+id/note_details_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:padding="@dimen/padding_large"
+            android:text="@{note.title}"
+            android:textSize="@dimen/extralarge_text_size"
+            android:textStyle="bold"
+            tools:text="Note Title"
+            android:layout_marginBottom="@dimen/margin_large"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/note_details_content_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:lineSpacingMultiplier="@dimen/line_spacing"
+            android:padding="16dp"
+            android:text="@{note.content}"
+            android:textSize="@dimen/regular_text_size"
+            tools:text="Note content goes here." />
+    </LinearLayout>
+</layout>
