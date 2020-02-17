@@ -41,6 +41,8 @@ class CreateNoteFragment : Fragment() {
         // Data binding
         val binding = DataBindingUtil.inflate<CreateNoteFragmentBinding>(inflater, R.layout.create_note_fragment, container, false)
         binding.setLifecycleOwner(this)
+        //Set background color
+        binding.root.setBackgroundColor(getResources().getColor(R.color.colorBackground))
 
         //Setup ViewModel
         val viewModelFactory = CreateNoteViewModelFactory()

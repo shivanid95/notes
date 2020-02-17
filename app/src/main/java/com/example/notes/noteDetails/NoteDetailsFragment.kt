@@ -43,6 +43,9 @@ class NoteDetailsFragment: Fragment() {
         activity?.actionBar?.setDisplayHomeAsUpEnabled(true)
         binding.note = note
         setHasOptionsMenu(true)
+
+        //Set Background color
+        binding.root.setBackgroundColor(getResources().getColor(R.color.colorBackground))
         return binding.root
     }
 
