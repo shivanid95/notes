@@ -27,7 +27,7 @@
             app:cardCornerRadius="5dp"
             app:cardUseCompatPadding="true"
             app:cardElevation="2dp"
-            
+
             android:onClick="@{() -> listener.onNoteClicked(note)}">
 
             <TextView
