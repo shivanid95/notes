@@ -74,8 +74,6 @@ class NotesListAdaptor(val viewModel: NotesListViewModel): ListAdapter<Note, Not
         }
     }
 
-
-
 }
 
 
@@ -87,7 +85,7 @@ class NotesListDiffCallback: DiffUtil.ItemCallback<Note>() {
 
     override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
 
-        return oldItem.date == newItem.date && oldItem.isBookmarked == newItem.isBookmarked
+        return oldItem.date == newItem.date
     }
 
     override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {

@@ -63,7 +63,6 @@ class NotesListViewModel : ViewModel() {
 
     fun bookmarkNote(note: Note?) {
         if (note != null) {
-            note.isBookmarked = !note.isBookmarked
             updateNoteBookmarkStatus(note!!)
 
         }
@@ -73,8 +72,9 @@ class NotesListViewModel : ViewModel() {
 
     fun updateNoteBookmarkStatus(note: Note) {
         val index =  _notes.value!!.indexOf(note)
+        val newNote = Note(note.title, note.content, note.date, !note.isBookmarked)
         val tempList = _notes.value!!.toMutableList()
-        tempList[index] = note
+        tempList[index] = newNote
         _notes.value = tempList
 
     }
