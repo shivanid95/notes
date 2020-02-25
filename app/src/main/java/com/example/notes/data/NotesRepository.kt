@@ -5,7 +5,13 @@ package com.example.notes.data
  */
 object NotesRepository {
 
-     private val _notes: MutableList<Note> = mutableListOf()
+    private val data = listOf<Note>(
+        Note("New Note 1", "ajsshfhk some random descrition"),
+        Note("New Note 2", "ajsshfhk some random descrition"),
+        Note("New Note 3", "ajsshfhk some random descrition"),
+        Note("New Note 4", "ajsshfhk some random descrition"))
+
+     private val _notes: MutableList<Note> = data.toMutableList()
      val notes: List<Note>
         get() = _notes
 

@@ -10,4 +10,4 @@ import java.util.*
  * Note class: for saving a single note unit
  */
 @Parcelize
-data class Note(var title: String = "", var content: String = "", var date: Date = Date()) : Parcelable
+data class Note(var title: String = "", var content: String = "", var date: Date = Date(), var isBookmarked: Boolean = false) : Parcelable

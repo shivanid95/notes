@@ -6,5 +6,7 @@
     <string name="no_title_message">Please add a title to save.</string>
     <string name="no_content_message">Please add some content to save</string>
     <string name="note_item_title">\\u2022 %s</string>
+    <string name="bookmarked">YES</string>
+    <string name="not_bookmarked">NO</string>
 </resources>
 

@@ -42,12 +42,6 @@ class NotesListFragment : Fragment() {
             false
         )
 
-        val data = listOf(
-            Note("First npte", "Dummy content"),
-            Note("Hello world", "This is a note"),
-            Note("YOlo", "You only live once")
-
-        )
         binding.setLifecycleOwner(this)
         binding.root.setBackgroundColor(getResources().getColor(R.color.colorBackground))
         val viewModelFactory = NotesListViewModelFactory()

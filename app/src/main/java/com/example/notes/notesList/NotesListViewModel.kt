@@ -13,8 +13,8 @@ import com.example.notes.utility.Event
 
 class NotesListViewModel : ViewModel() {
 
-   // List of notes added
-   private val _notes = MutableLiveData<List<Note>>().apply { value = emptyList() }
+    // List of notes added
+    private val _notes = MutableLiveData<List<Note>>().apply { value = emptyList() }
     val notes: LiveData<List<Note>>
         get() = _notes
 
@@ -58,6 +58,24 @@ class NotesListViewModel : ViewModel() {
         if (notes !== NotesRepository.notes) {
             _notes.value = NotesRepository.notes
         }
+
+    }
+
+    fun bookmarkNote(note: Note?) {
+        if (note != null) {
+            note.isBookmarked = !note.isBookmarked
+            updateNoteBookmarkStatus(note!!)
+
+        }
+
+
+    }
+
+    fun updateNoteBookmarkStatus(note: Note) {
+        val index =  _notes.value!!.indexOf(note)
+        val tempList = _notes.value!!.toMutableList()
+        tempList[index] = note
+        _notes.value = tempList
 
     }
 

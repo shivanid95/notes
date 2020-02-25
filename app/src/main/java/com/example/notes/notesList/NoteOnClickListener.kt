@@ -9,5 +9,6 @@ import com.example.notes.data.Note
 interface NoteOnClickListener {
 
     fun onNoteClicked(note: Note?)
+    fun bookmarkNote(note: Note?)
 
 }

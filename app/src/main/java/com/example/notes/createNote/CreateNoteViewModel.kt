@@ -60,6 +60,7 @@ class CreateNoteViewModel: ViewModel() {
 
     // Adds note to the notes Repository
     fun saveNote() {
+
         Log.d("Content", "${title.value} content: ${content.value}")
         if (canSaveNote) {
             val note = Note(title.value!!, content.value!!)

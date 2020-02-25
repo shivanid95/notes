@@ -31,7 +31,12 @@ class NotesListAdaptor(val viewModel: NotesListViewModel): ListAdapter<Note, Not
             override fun onNoteClicked(note: Note?) {
                 if (note != null)  viewModel.openNote(note!!)
             }
+
+            override fun bookmarkNote(note: Note?) {
+                viewModel.bookmarkNote(note)
+            }
         }
+
 
         holder.bind(item, userActionListener)
     }
@@ -82,7 +87,7 @@ class NotesListDiffCallback: DiffUtil.ItemCallback<Note>() {
 
     override fun areItemsTheSame(oldItem: Note, newItem: Note): Boolean {
 
-        return oldItem.date == newItem.date && oldItem.content == newItem.content
+        return oldItem.date == newItem.date && oldItem.isBookmarked == newItem.isBookmarked
     }
 
     override fun areContentsTheSame(oldItem: Note, newItem: Note): Boolean {
